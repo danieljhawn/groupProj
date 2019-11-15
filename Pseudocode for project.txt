@@ -1,0 +1,14 @@
+Create HTML skeleton
+
+need button for random generate cat img from API
+
+need to store link to cat image as a variable 
+
+Need button for gimme the QR code
+
+this button will copy information from cat image variable template literal string
+
+input this information into QR generator code API input
+
+display QR code (which is the template literal of our cat image url)
+
