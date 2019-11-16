@@ -1,26 +1,27 @@
-var APIkey = "f74eebc0-82d1-42da-a064-0153a52d95f2";
+var queryURL = "https://api.thecatapi.com/v1/images/search";
 
-// variable for the cats
-var querycatURL = "https://api.thecatapi.com/v1/images/search";
-
-//ajax call for the cats
-$.ajax({
-    url: querycatURL,
+$("#cat-button").on("click", function(event) {
+    $.ajax({
+    url: queryURL,
     method: "GET"
-})
-    // We store all of the retrieved data inside of an object called "response"
-    .then(function (response) {
+}).then(function (catInfo) {
+    var imageURL = catInfo[0].url;
+    var imageHeight = catInfo[0].height;
+    var imageWidth = catInfo[0].width;
+    console.log("image url is " + imageURL);
+    console.log("image height is " + imageHeight);
+    console.log("image width is " + imageWidth);
+    getQRCodeImage(imageURL);
 
-        // Log the querycatURL
-        console.log(querycatURL);
-    });
-
-
-//onclick function for cat button
-$("#cat-button").on("click", function () {
- console.log("cat url: " + response.url)
+});
 });
 
- // onlick function for QR button
- // $("#QR-button").on("click", function () {
- 
+function getQRCodeImage(URL) {
+    var QRCodeQueryURL = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + URL;
+    $.ajax({
+    url: QRCodeQueryURL,
+    method: "GET"
+}).then(function (QRURL) {
+    console.log("QR code URL is" + QRCodeQueryURL);
+});
+}
