@@ -8,10 +8,9 @@ $("#cat-button").on("click", function(event) {
     var imageURL = catInfo[0].url;
     var imageHeight = catInfo[0].height;
     var imageWidth = catInfo[0].width;
-    console.log("image url is " + imageURL);
-    $("#cat-image").attr("src", imageURL);
-    console.log("image height is " + imageHeight);
-    console.log("image width is " + imageWidth);
+
+    $(".imgPlace").html(makeImgPlace(imageURL,imageWidth,imageHeight));
+
     getQRCodeImage(imageURL);
 
 });
@@ -24,7 +23,44 @@ function getQRCodeImage(URL) {
     url: QRCodeQueryURL,
     method: "GET"
 }).then(function (QRURL) {
-    console.log("QR code URL is " + QRCodeQueryURL);
     $("#qr-image").attr("src", QRCodeQueryURL);
+
+
 });
 }
+
+        function makeImgPlace(i,x,y){
+            console.log(i);
+            
+          return `
+            <div class="placement">
+              <img src="${i}"${resizer(".home",x,y)}/>
+            </div>
+          `
+        }
+
+        function resizer(whatBox,x,y){
+          
+          var boxWidth = ($(whatBox).width()); //650 this gets the box size excluding border/margins/padding
+          var boxHeight = ($(whatBox).height()); // 450
+          var XbY = (y / x); // gives the ratio for when x is bigger than y
+          var YbX = (x / y); // gives the ratio for when y is bigger than x
+          var ratioChange;
+            if (x > y){  // circumstance of the sized
+              ratioChange = boxWidth*XbY; // creates the changed size value based on ratio of difference
+              offSetValue = ((boxWidth - ratioChange)); // creates the offset value for centering the image
+              return `style="width: ${boxWidth}; height:${ratioChange}px; position:relative; top:${offSetValue}px"`
+            }
+            else if (y > x){
+              ratioChange = boxHeight*YbX;
+              offSetValue = ((boxHeight - ratioChange));
+              return `style="width: ${ratioChange}px; height: ${boxHeight}; position:relative; left:${offSetValue}px"`
+            }
+            else if (x == y){
+              return `style="width: ${boxHeight}; height: ${boxHeight};"`
+            }
+          else {
+            return
+          }
+
+        }
