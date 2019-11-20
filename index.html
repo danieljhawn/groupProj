@@ -12,62 +12,42 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-    <style> /*This is temp style template for testing purposes*/
-
-            .home{
-              height: 384px; /*450*/
-              width: 584px;  /*650*/
-              border: 2px solid black;
-              padding: 15px;
-              display: inline-block;
-            }
-            
-          
-            /* @media only screen and (max-width: 600px) {
-    
-
-    
-            } */
-    
-    </style>
-
-
 </head>
 
-<body>
+<body class="blue-grey lighten-6 ">
 
-    <header class="center-align #90caf9 blue lighten-3">
-        <h1>Cats To QR Codes!</h1>
+    <header class="center-align">
+        <h1 class="#90caf9 blue lighten-3 z-depth-2">Cats To QR Codes!</h1>
     </header>
-
-    <div class="container">
+    <container class="content">
         <div class="row s12">
             <!-- buttons here with id's for jquery reference -->
-            <div class="col s6 #cfd8dc blue-grey lighten-4 center offset-10">
-                <button class="btn-large green" id="cat-button">Click here for a cat pic!</button>
+            <div class="col s12 #90caf9 blue lighten-3 center z-depth-2">
+                <button class="btn-large light-blue darken-3 hoverable waves-effect waves-light" id="cat-button">CATS!</button>
                 <img>
             </div>
-            <div class="col s6 #cfd8dc blue-grey lighten-4 center">
-                <button class="btn-large green" id="QR-button">Click here to generate QR code!</button>
-                <img>
+
+        </div>
+
+        <div class="row #90caf9 blue lighten-3 center offset-10 padding z-depth-2">
+            <div class="col s12 m6 l6">
+                <img class="responsive-img z-depth-5 margins" id="cat-image">
             </div>
+            <div class="col s12 m6 l6">
+                <img class="responsive-img z-depth-5 margins" id="qr-image">
+            </div>
+
         </div>
+    </container>
 
-        <div class="row imgPlace">
-           
+    <footer class="page-footer center card-panel #90caf9 blue lighten-3 sticky-foot">
+        <div class="container">
+            © 2019 Copyleft Official Cat-to-QR Generator
         </div>
-        
+    </footer>
 
-
-    </div>
-
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
     <script src="script.js"></script>
