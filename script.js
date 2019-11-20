@@ -1,22 +1,20 @@
-
-$('#animated').click(function () {
+$('#animated').click(function() {
     $("#animated").toggle(this.checked);
 });
 
-$("#cat-button").on("click", function (event) {
+$("#cat-button").on("click", function(event) {
     var queryURL = "https://api.thecatapi.com/v1/images/search";
 
     if (document.getElementById('animated').checked) {
         console.log("checked");
         queryURL += "?mime_types=gif";
-    }
-    else{
+    } else {
         queryURL += "?mime_types=jpg,png";
     }
     $.ajax({
         url: queryURL,
         method: "GET"
-    }).then(function (catInfo) {
+    }).then(function(catInfo) {
         var imageURL = catInfo[0].url;
         var imageHeight = catInfo[0].height;
         var imageWidth = catInfo[0].width;
@@ -31,9 +29,8 @@ function getQRCodeImage(URL) {
     $.ajax({
         url: QRCodeQueryURL,
         method: "GET"
-    }).then(function (QRURL) {
+    }).then(function(QRURL) {
         console.log("QR code URL is " + QRCodeQueryURL);
         $("#qr-image").attr("src", QRCodeQueryURL);
     });
 }
-
