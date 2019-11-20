@@ -9,6 +9,7 @@ $("#cat-button").on("click", function(event) {
     var imageHeight = catInfo[0].height;
     var imageWidth = catInfo[0].width;
     console.log("image url is " + imageURL);
+    $("#cat-image").attr("src", imageURL);
     console.log("image height is " + imageHeight);
     console.log("image width is " + imageWidth);
     getQRCodeImage(imageURL);
@@ -16,12 +17,14 @@ $("#cat-button").on("click", function(event) {
 });
 });
 
+
 function getQRCodeImage(URL) {
     var QRCodeQueryURL = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + URL;
     $.ajax({
     url: QRCodeQueryURL,
     method: "GET"
 }).then(function (QRURL) {
-    console.log("QR code URL is" + QRCodeQueryURL);
+    console.log("QR code URL is " + QRCodeQueryURL);
+    $("#qr-image").attr("src", QRCodeQueryURL);
 });
 }
