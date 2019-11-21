@@ -1,8 +1,8 @@
-$('#animated').click(function () {
+$('#animated').click(function() {
     $("#animated").toggle(this.checked);
 });
 
-$("#cat-button").on("click", function (event) {
+$("#cat-button").on("click", function(event) {
     var queryURL = "https://api.thecatapi.com/v1/images/search";
 
     if (document.getElementById('animated').checked) {
@@ -14,7 +14,7 @@ $("#cat-button").on("click", function (event) {
     $.ajax({
         url: queryURL,
         method: "GET"
-    }).then(function (catInfo) {
+    }).then(function(catInfo) {
         console.log(catInfo);
         var imageURL = catInfo[0].url;
         var imageHeight = catInfo[0].height;
@@ -31,7 +31,7 @@ function getQRCodeImage(URL) {
     $.ajax({
         url: QRCodeQueryURL,
         method: "GET"
-    }).then(function (QRURL) {
+    }).then(function(QRURL) {
         console.log("QR code URL is " + QRCodeQueryURL);
         $("#qr-image").attr("src", QRCodeQueryURL);
     });
@@ -43,7 +43,7 @@ function getbreed() {
     $.ajax({
         url: breedURL,
         method: "GET"
-    }).then(function (QRURL) {
+    }).then(function(QRURL) {
         console.log(QRURL);
 
         var generatestring = "";
@@ -57,12 +57,14 @@ function getbreed() {
         }
 
         $("#dropdown").css("display", "block");
+        $("#dropdown").css("margin-left", "auto");
+        $("#dropdown").css("margin-right", "auto");
     });
 }
 
 //create a button similar to line 5, write an onclick function for this, use the breed URL and the breed ID from the select option
 
-$("#breed-button").on("click", function (event) {
+$("#breed-button").on("click", function(event) {
     // add id value to end of  queryURL to selected breed
     var queryURL = "https://api.thecatapi.com/v1/images/search?breed_ids=" + $('#dropdown').val();
     console.log("hello " + $('#dropdown').val());
@@ -70,7 +72,7 @@ $("#breed-button").on("click", function (event) {
     $.ajax({
         url: queryURL,
         method: "GET"
-    }).then(function (catInfo) {
+    }).then(function(catInfo) {
         var imageURL = catInfo[0].url;
         console.log(catInfo[0]);
         var imageHeight = catInfo[0].height;
