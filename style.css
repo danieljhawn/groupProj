@@ -1,3 +1,11 @@
+.center-align h1{
+    margin-top: 0px;
+}
+
+label{
+    margin-left: -250px;
+}
+
 body {
     display: flex;
     flex-direction: column;
