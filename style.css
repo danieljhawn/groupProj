@@ -49,3 +49,57 @@ h1 {
     box-sizing: border-box;
     margin: 10px;
 }
+
+/* ----------------------Jeff Section to take------------------------ */
+.catHistImgBorder{
+    display:inline-block;
+    margin-right:10px;
+    margin-bottom: 10px;
+    height: 70px;
+    width: 70px;
+    border: solid rgb(78, 78, 78) 1px;
+    border-radius: 7px;
+    background-color: rgb(173, 173, 173);
+}
+
+.catHistImg {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+    border-radius: 7px;
+    }
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 1;
+    transition: .5s ease;
+    background-color: rgba(0, 0, 0, 0.527);
+    
+}
+.imgArea:hover .overlay {
+    opacity: 0;
+}
+.imgArea{
+    position: relative;
+}
+
+
+.historical10{
+
+    height: 110px;
+
+    margin-left: 20px;
+    margin-right: 20px;
+
+}
+
+/* ---------------------------------------------- */
+
+

@@ -1,3 +1,6 @@
+var arrayImg = [];
+
+
 $('#animated').click(function() {
     $("#animated").toggle(this.checked);
 });
@@ -23,8 +26,52 @@ $("#cat-button").on("click", function(event) {
         $("#cat-image").attr("src", imageURL);
         // calls function getQRCodeImage() to convert imageURL into a QR code.
         getQRCodeImage(imageURL);
+
+        ///////////////////////////J////////////////////////////
+
+        arrayImg.unshift([imageURL,imageWidth,imageHeight]);
+        if (arrayImg.length > 10){  //edit this number to modify the number of images stored currently 10
+            arrayImg.splice(10,1);  //edit this number to modify the number of images stored currently 10
+        }
+        $(".historical10").html("");
+
+        arrayImg.forEach(function(iter,i){
+            $(".historical10").append(makeHistPlace(i));
+            $(".hist"+i).html(placeHistImg(iter));
+        })
+        ////////////////////////////^///////////////////////////
     });
 });
+
+
+///////////////////////////J///////////////////////////////
+
+$(document).on("click",".overlay",function(){
+    var bufferHistImg;
+    var bufferSrc = ($(this).attr("data-name"));
+    arrayImg.forEach(function(hist,i){
+        if (hist[0] == bufferSrc){
+            bufferHistImg = (arrayImg[i]);
+            arrayImg.splice(i,1);
+            arrayImg.unshift(bufferHistImg);
+        }
+    })
+    $(".historical10").html("");
+
+    arrayImg.forEach(function(iter,i){
+        $(".historical10").append(makeHistPlace(i));
+        $(".hist"+i).html(placeHistImg(iter));
+    })
+    $("#cat-image").attr("src", arrayImg[0][0]);
+    getQRCodeImage(arrayImg[0][0]);
+    
+    
+});
+    ///////////////////////////^///////////////////////////////
+
+
+
+
 
 function getQRCodeImage(URL) {
     var QRCodeQueryURL = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + URL;
@@ -80,9 +127,97 @@ $("#breed-button").on("click", function(event) {
         // displays cat image
         $("#cat-image").attr("src", imageURL);
         // calls function getQRCodeImage() to convert imageURL into a QR code.
+        
+        ///////////////////////////J////////////////////////////
+
+        arrayImg.unshift([imageURL,imageWidth,imageHeight]);
+        if (arrayImg.length > 10){  //edit this number to modify the number of images stored currently 10
+            arrayImg.splice(10,1);  //edit this number to modify the number of images stored currently 10
+        }
+        $(".historical10").html("");
+
+        arrayImg.forEach(function(iter,i){
+            $(".historical10").append(makeHistPlace(i));
+            $(".hist"+i).html(placeHistImg(iter));
+        })
+        ////////////////////////////^///////////////////////////
+
         getQRCodeImage(imageURL);
     });
 });
 
 //populates breed list
 getbreed();
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////
+function resizer(whatBox,x,y){  // Resize all images from small to larger or larger to smaller and centers the image into place of container.
+          
+    var boxWidth = ($(whatBox).width()); //650 this gets the box size excluding border/margins/padding
+    var boxHeight = ($(whatBox).height()); // 450
+    var XbY = (y / x); // gives the ratio for when x is bigger than y
+    var YbX = (x / y); // gives the ratio for when y is bigger than x
+    var ratioChange;
+    
+    if (x > y){  // circumstance of the sized
+        ratioChange = boxWidth*XbY; // creates the changed size value based on ratio of difference
+        if (ratioChange > boxHeight){
+            ratioChange = boxHeight;
+            var adjustSize = ratioChange/XbY;
+            offSetValue = ((boxWidth - adjustSize)/2);
+            return `style="width: ${adjustSize}; height:${ratioChange}px; position:relative; left:${offSetValue}px;"`
+        }
+        else{
+            offSetValue = ((boxHeight - ratioChange)/2); // creates the offset value for centering the image
+            return `style="width: ${boxWidth}; height:${ratioChange}px; position:relative; top:${offSetValue}px;"`
+        }
+    }
+    else if (y > x){
+        ratioChange = boxHeight*YbX;
+        if (ratioChange > boxWidth){
+            ratioChange = boxWidth;
+            var adjustSize = ratioChange/YbX;
+            offSetValue = ((boxHeight - adjustSize)/2); // creates the offset value for centering the image
+            return `style="width: ${ratioChange}px; height: ${adjustSize}; position:relative; top:${offSetValue}px;"`
+        }
+        else {
+            offSetValue = ((boxWidth - ratioChange)/2);
+            return `style="width: ${ratioChange}px; height: ${boxHeight}; position:relative; left:${offSetValue}px;"`
+        }
+    }
+    else if (x == y){
+        offSetValue = ((boxWidth - boxHeight)/2);
+        return `style="width: ${boxHeight}px; height: ${boxHeight}px; position:relative; left:${offSetValue}px;"`
+    }
+    else {
+        return
+    }
+}
+
+function makeHistPlace(x){  // Creates div image container for history images
+
+    return `
+    <div class="catHistImgBorder hist${x}">
+        
+    </div>
+    `
+}
+
+function placeHistImg(x){  // Creates the images with overlay for history buttons
+    return `
+    <div class="imgArea" ${resizer(".catHistImgBorder",x[1],x[2])}>
+        <img class="catHistImg" src="${x[0]}" alt="Cat_Historical_Image"/>
+        <div class="overlay" data-name="${x[0]}"></div>
+    </div>
+`
+}
+
+
+//////////////////////////^////////////////////////////////
