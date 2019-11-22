@@ -83,26 +83,26 @@ function getQRCodeImage(URL) {
         $("#qr-image").attr("src", QRCodeQueryURL);
     });
 }
-
+//makes function to access Cat API, and loops through breed array
 function getbreed() {
     var breedURL = "https://api.thecatapi.com/v1/breeds";
-
+//makes ajax call for breed object array
     $.ajax({
         url: breedURL,
         method: "GET"
-    }).then(function(QRURL) {
-        console.log(QRURL);
+    }).then(function(catInfo) {
+        console.log(catInfo);
 
-        var generatestring = "";
+        
 
-        for (let i = 0; i < QRURL.length; i++) {
-
+        for (let i = 0; i < catInfo.length; i++) {
+//Populates each option from breed array
             $("#dropdown").append($('<option>', {
-                value: QRURL[i].id,
-                text: QRURL[i].name
+                value: catInfo[i].id,
+                text: catInfo[i].name
             }));
         }
-
+//Jquery manipulation of CSS of dropdown div
         $("#dropdown").css("display", "block");
         $("#dropdown").css("margin-left", "auto");
         $("#dropdown").css("margin-right", "auto");
