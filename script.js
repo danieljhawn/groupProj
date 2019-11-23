@@ -48,8 +48,8 @@ $("#cat-button").on("click", function (event) {
 
 ///////////////////////////J///////////////////////////////
 
-$(document).on("click", ".overlay", function () {
-    var bufferHistImg;
+$(document).on("click", ".overlay", function () {   // On click of a history button, it will bring that image into view and generate a QR code for it again
+    var bufferHistImg;                              // it will also bring that image choice to first position again to delay its deletion.
     var bufferSrc = ($(this).attr("data-name"));
     arrayImg.forEach(function (hist, i) {
         if (hist[0] == bufferSrc) {
@@ -140,7 +140,7 @@ $("#breed-button").on("click", function (event) {
     });
 });
 
-//////////////////////////////////////////////////////////
+///////////////////////////J///////////////////////////////
 function resizer(whatBox, x, y) {  // Resize all images from small to larger or larger to smaller and centers the image into place of container.
 
     var boxWidth = ($(whatBox).width()); //650 this gets the box size excluding border/margins/padding
@@ -201,6 +201,5 @@ function placeHistImg(x) {  // Creates the images with overlay for history butto
     </div>
 `
 }
-
 
 //////////////////////////^////////////////////////////////

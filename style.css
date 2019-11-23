@@ -52,12 +52,12 @@ h1 {
 }
 
 
-/* ----------------------Jeff Section to take------------------------ */
+/* ----------------------Jeff Section------------------------ */
 
 .catHistImgBorder {
     display: inline-block;
-    margin-right: 10px;
-    margin-bottom: 10px;
+    margin-right: 5px;
+    margin-bottom: 5px;
     height: 70px;
     width: 70px;
     border: solid rgb(78, 78, 78) 1px;
@@ -84,6 +84,7 @@ h1 {
     opacity: 1;
     transition: .5s ease;
     background-color: rgba(0, 0, 0, 0.527);
+    border-radius: 7px;
 }
 
 .imgArea:hover .overlay {
@@ -95,7 +96,7 @@ h1 {
 }
 
 .historical10 {
-    height: 110px;
+    min-height: 80px;
     margin-left: 20px;
     margin-right: 20px;
 }
